@@ -10,6 +10,8 @@ LET-NET implements an extremely lightweight network for feature point extraction
 
 ## News 
 
+！！！ **A new [version](https://github.com/linyicheng1/LET-NET2) with end-to-end training has been made publicly available.**
+
 1. The LET-NET training code is released at https://github.com/linyicheng1/LET-NET-Train.
 2. Gray Image is also suport in LET-NET, you can get pytorch and onnx model tpye in `./model/`
 3. [LET-VINS](https://github.com/linyicheng1/LET-NET/blob/main/assets/VINS-Mono.zip) Demo run on UMA-VI dataset is released.
