@@ -227,7 +227,7 @@ def main():
         
         # Write to output video if in video mode
         if is_video:
-            writer.write(frame)
+            writer.write(output_frame)
         
         # Display timing information
         time_preprocess = (t2 - t1) * 1000

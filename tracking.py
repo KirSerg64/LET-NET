@@ -11,6 +11,10 @@ from typing import List, Tuple
 class CornerTracking:
     """Corner tracking class using optical flow and feature extraction"""
     
+    # Configuration constants
+    MAX_TRAJECTORY_LENGTH = 5
+    CORNER_DETECTION_THRESHOLD = 0.2
+    
     def __init__(self):
         self.tracked_points = []
         self.prev_tracked_points = []
@@ -45,7 +49,7 @@ class CornerTracking:
                 if st[0]:  # status is returned as [[1]] or [[0]]
                     tracked.append(tracked_points_new[i])
                     self.tracked_points_history[i].append(tuple(tracked_points_new[i]))
-                    if len(self.tracked_points_history[i]) > 5:
+                    if len(self.tracked_points_history[i]) > self.MAX_TRAJECTORY_LENGTH:
                         self.tracked_points_history[i].pop(0)
                     tracked_history.append(self.tracked_points_history[i])
             
@@ -144,7 +148,7 @@ class CornerTracking:
                 
                 max_px = (max_loc[0] + x, max_loc[1] + y)
                 
-                if max_val >= 0.2 * 255:  # threshold (score is uint8, 0-255)
+                if max_val >= self.CORNER_DETECTION_THRESHOLD * 255:  # threshold (score is uint8, 0-255)
                     vdetected_px.append(max_px)
                     cv2.circle(mask, max_px, nhalfcell, 0, -1)
                     
@@ -155,7 +159,7 @@ class CornerTracking:
                     
                     max_px = (max_loc[0] + x, max_loc[1] + y)
                     
-                    if max_val >= 0.2 * 255:
+                    if max_val >= self.CORNER_DETECTION_THRESHOLD * 255:
                         vvsec_detections_px.append(max_px)
                         cv2.circle(mask, max_px, nhalfcell, 0, -1)
         

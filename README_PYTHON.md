@@ -65,7 +65,7 @@ The repository includes two ONNX models in the `model/` directory:
 
 ### Preprocessing
 
-1. Images are resized to 320x240 pixels
+1. Images are resized to width=320, height=240 pixels (OpenCV format: width x height)
 2. Normalized to [0, 1] by dividing by 255
 3. Converted from BGR to RGB
 4. Transposed to CHW (channels, height, width) format
